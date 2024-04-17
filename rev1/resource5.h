@@ -1,9 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by Resource.rc
+// Used by Resource5.rc
 //
 #define IDR_RCDATA1                     101
-#define IDR_RCDATA2                     101
 
 // Next default values for new objects
 // 
