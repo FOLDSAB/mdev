@@ -3,7 +3,6 @@
 // Used by Resource.rc
 //
 #define IDR_RCDATA1                     101
-#define IDR_RCDATA2                     101
 
 // Next default values for new objects
 // 
