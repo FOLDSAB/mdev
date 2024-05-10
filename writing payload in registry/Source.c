@@ -1,41 +1,41 @@
-#include <stdio.h>
-#include <Windows.h>
-#define REGISTRY "Control Panel"
-#define REGSTRING "writingpayloadinregistry"
-
-
-
-//BOOL writeshellcodetoregistry(unsigned char* pshellcode,SIZE_T sShellcode);
-BOOL ReadPaylodFromshellcode(SIZE_T sShellcode,unsigned char* pshellcode);
-
-int main() {
-	
-
-
-
-	
-	unsigned char shellcode[] = { 0x41,0x41,0x90,0x90,0x90,0x90,0x90,0x90 };
-
-
-
-
-	unsigned char* pshellcode = shellcode;
-	
-
-	PBYTE* ppshellcode = NULL;
-
-
-	SIZE_T sShellcode = sizeof(shellcode);
-
-	//writeshellcodetoregistry(pshellcode,sShellcode);
-	ReadPaylodFromshellcode(sShellcode, pshellcode);
-
-
-	printf("press <ENTER>  to exit\n");
-	getchar();
-
-
-}
+//#include <stdio.h>
+//#include <Windows.h>
+//#define REGISTRY "Control Panel"
+//#define REGSTRING "writingpayloadinregistry"
+//
+//
+//
+////BOOL writeshellcodetoregistry(unsigned char* pshellcode,SIZE_T sShellcode);
+//BOOL ReadPaylodFromshellcode(SIZE_T sShellcode,unsigned char* pshellcode);
+//
+//int main() {
+//	
+//
+//
+//
+//	
+//	unsigned char shellcode[] = { 0x41,0x41,0x90,0x90,0x90,0x90,0x90,0x90 };
+//
+//
+//
+//
+//	unsigned char* pshellcode = shellcode;
+//	
+//
+//	PBYTE* ppshellcode = NULL;
+//
+//
+//	SIZE_T sShellcode = sizeof(shellcode);
+//
+//	//writeshellcodetoregistry(pshellcode,sShellcode);
+//	ReadPaylodFromshellcode(sShellcode, pshellcode);
+//
+//
+//	printf("press <ENTER>  to exit\n");
+//	getchar();
+//
+//
+//}
 
 
 //BOOL ReadPaylodFromshellcode(SIZE_T sShellcode,unsigned char* pshellcode) {
@@ -70,35 +70,35 @@ int main() {
 //
 //}
 
-BOOL ReadPaylodFromshellcode(SIZE_T sShellcode, unsigned char* pshellcode) {
-	LSTATUS status;
-	DWORD dwbytesread = sShellcode; // Initialize the variable
-	PVOID pbytes = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sShellcode);
-
-	if (pbytes == NULL) {
-		printf("heap alloc failed with error no %d\n", GetLastError());
-		return FALSE;
-	}
-
-	status = RegGetValueA(HKEY_CURRENT_USER, REGISTRY, REGSTRING, RRF_RT_ANY, NULL, pbytes, &dwbytesread);
-
-	if (status != ERROR_SUCCESS) {
-		printf("reggetvaluea failed with error %d\n", status);
-		HeapFree(GetProcessHeap(), 0, pbytes); // Free allocated memory
-		return FALSE;
-	}
-
-	// Print the read data
-	printf("Shellcode read from registry: ");
-	for (DWORD i = 0; i < dwbytesread; i++) {
-		printf("%02x ", ((unsigned char*)pbytes)[i]); // Cast pbytes to unsigned char* to access bytes
-	}
-	printf("\n");
-
-	HeapFree(GetProcessHeap(), 0, pbytes); // Free allocated memory
-	return TRUE;
-}
-
+//BOOL ReadPaylodFromshellcode(SIZE_T sShellcode, unsigned char* pshellcode) {
+//	LSTATUS status;
+//	DWORD dwbytesread = sShellcode; // Initialize the variable
+//	PVOID pbytes = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sShellcode);
+//
+//	if (pbytes == NULL) {
+//		printf("heap alloc failed with error no %d\n", GetLastError());
+//		return FALSE;
+//	}
+//
+//	status = RegGetValueA(HKEY_CURRENT_USER, REGISTRY, REGSTRING, RRF_RT_ANY, NULL, pbytes, &dwbytesread);
+//
+//	if (status != ERROR_SUCCESS) {
+//		printf("reggetvaluea failed with error %d\n", status);
+//		HeapFree(GetProcessHeap(), 0, pbytes); // Free allocated memory
+//		return FALSE;
+//	}
+//
+//	// Print the read data
+//	printf("Shellcode read from registry: ");
+//	for (DWORD i = 0; i < dwbytesread; i++) {
+//		printf("%02x ", ((unsigned char*)pbytes)[i]); // Cast pbytes to unsigned char* to access bytes
+//	}
+//	printf("\n");
+//
+//	HeapFree(GetProcessHeap(), 0, pbytes); // Free allocated memory
+//	return TRUE;
+//}
+//
 
 
 
@@ -122,9 +122,48 @@ BOOL ReadPaylodFromshellcode(SIZE_T sShellcode, unsigned char* pshellcode) {
 //
 //	printf("[+]DONE");
 //
+// 
+// 
 //	if (hkey) {
 //		RegCloseKey(hkey);
 //	}
 //
 //
 //}
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <Windows.h>
+#include <winreg.h>
+#define REGISTRY  "Control Panel"
+
+int main() {
+	LPCSTR data = "dada_dangerous";
+	HKEY hkey = NULL;
+	LSTATUS status;
+
+	status = RegOpenKeyExA(HKEY_CURRENT_USER,REGISTRY, 0, KEY_SET_VALUE, &hkey);
+	if (status != ERROR_SUCCESS) {
+		printf("The RegOpenKeyExA failed with error no %d\n", GetLastError());
+	}
+	else {
+		status = RegSetValueA(hkey, "", REG_SZ, (BYTE*)data, 0); // Set the default value ("") of the key
+		if (status != ERROR_SUCCESS) {
+			printf("The RegSetValueA failed with error no %d\n", GetLastError());
+		}
+		else {
+			printf("Registry key value set successfully.\n");
+		}
+		RegCloseKey(hkey); 
+	}
+	//RegCloseKey(hkey);
+
+	printf("Press enter to exit\n");
+	getchar();
+	return 0;
+
+}

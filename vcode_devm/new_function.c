@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <Windows.h>
+#include <windows.h>
+
 
 
 BOOL GenerateIPV4Output(unsigned char* pshellcode,SIZE_T shellcode);

@@ -1,5 +1,5 @@
-#include <stdio.h>
- 
+
+
 #define mac 80
 
 #if mac < 200
@@ -13,6 +13,8 @@
 #undef mac
 #define mac 300
 #endif
+
+
 
 
 
