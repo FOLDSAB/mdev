@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3c1f7036-e3db-4649-b9e4-7a5ac88aeb81}</ProjectGuid>
-    <RootNamespace>makingapeparser</RootNamespace>
+    <ProjectGuid>{aa9a2c8a-b937-493a-99dd-2a82e875f27c}</ProjectGuid>
+    <RootNamespace>AnotherPEparser</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -130,7 +130,8 @@
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="beacon.h" />
+    <ClInclude Include="typedefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
