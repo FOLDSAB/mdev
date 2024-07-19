@@ -103,7 +103,7 @@ BOOL ParseNTHeaders(FILE* hfile, LONG NTheaderoffset, WORD* Noofsections) {
         printf("Size of Heap commit: %d Bytes\n", (int)imgNT.OptionalHeader.SizeOfHeapCommit);
         printf("Size of Stack reserve: %d Bytes\n", (int)imgNT.OptionalHeader.SizeOfStackReserve);
         printf("size of Stack commit: %d Bytes \n", (int)imgNT.OptionalHeader.SizeOfStackCommit);
-
+        n 
 
     }
 

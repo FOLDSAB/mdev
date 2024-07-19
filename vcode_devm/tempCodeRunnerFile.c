@@ -1,4 +1,3 @@
-    for (int i = 0; i < 4; i++)
-    {
-        printf("%s\n", temp[i]);
+    if(link1.front == NULL){
+        printf("null found\n");
     }

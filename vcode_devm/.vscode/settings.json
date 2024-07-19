@@ -32,4 +32,9 @@
 
     // Enable parameter hints
     "editor.parameterHints.enabled": true,
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "stdlib.h": "c",
+        "winternl.h": "c"
+    },
 }

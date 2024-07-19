@@ -1,0 +1,14 @@
+
+rule detect_hidden_macro_xls {
+    meta:
+        description = "Detects an macro embedded XLS file with references to mshta.exe and a specific Dropbox URL"
+        author = "Utsab Adhikari"
+        date = "2024-07-05"
+
+    strings:
+        $string1 = "mshta.exe"
+        $string2 = "https://dl.dropboxusercontent.com/s/kmplyoh5enq1whf/htseelaaa.hta"
+
+    condition:
+        $string1 at 0 and $string2 at 0
+}
