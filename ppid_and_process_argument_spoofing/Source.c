@@ -21,7 +21,7 @@ BOOL ParentPIDSpoofing( LPWSTR newprocessname, HANDLE* hnewprocess, DWORD *dwnew
 	SIZE_T Attributelist = 0;
 	HANDLE hprocess = HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeof(HANDLE));
 
-	 OpenAprocess(4312,&hprocess);
+	 OpenAprocess(49820,&hprocess);
 
 	SI.StartupInfo.cb = sizeof(STARTUPINFOEXW);
 
@@ -51,7 +51,7 @@ BOOL ParentPIDSpoofing( LPWSTR newprocessname, HANDLE* hnewprocess, DWORD *dwnew
 		return FALSE;
 	}
 	printf("\n[+] creating a spoofed process.....\n");
-	printf("[+] process created Notepad.exe with processid %d and parent process id 4312\n", PI.dwProcessId);
+	printf("[+] process created Notepad.exe with processid %d and parent process id 42628\n", PI.dwProcessId);
 
 
 	*hnewprocess = PI.hProcess;
